@@ -1,4 +1,4 @@
-from gothonweb.planisphere import Room, load_room, START, generic_death, laser_weapon_armory
+from gothonweb.planisphere import *
 import unittest
 
 
@@ -36,8 +36,23 @@ class test_planisphere(unittest.TestCase):
 
     def test_gothon_game_map(self):
         start_room = load_room(START)
-        self.assertEqual(start_room.go('shoot!'), generic_death)
-        self.assertEqual(start_room.go('dodge!'), generic_death)
+        self.assertEqual(start_room.go('shoot!'), shoot_death)
+        self.assertEqual(start_room.go('dodge!'), dodge_death)
 
         room = start_room.go('tell a joke')
         self.assertEqual(room, laser_weapon_armory)
+
+        self.assertEqual(room.go('*'), keypad_death)
+
+        room = room.go('0132')
+        self.assertEqual(room, the_bridge)
+
+        self.assertEqual(room.go('throw the bomb'), bomb_death)
+
+        room = room.go('slowly place the bomb')
+        self.assertEqual(room, escape_pod)
+
+        self.assertEqual(room.go('*'), the_end_loser)
+
+        room = room.go('2')
+        self.assertEqual(room, the_end_winner)
