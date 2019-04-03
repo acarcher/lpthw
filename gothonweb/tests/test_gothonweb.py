@@ -9,15 +9,19 @@ class test_index(unittest.TestCase):
 
     def test_index(self):
         rv = web.get('/', follow_redirects=True)
+        self.assertEqual(rv.status_code, 200)
+
+    def test_dne(self):
+        rv = web.get('/dne', follow_redirects=True)
         self.assertEqual(rv.status_code, 404)
 
-    def test_hello_get(self):
-        rv = web.get('/hello', follow_redirects=True)
+    def test_game_get_broken(self):
+        rv = web.get('/game', follow_redirects=True)
         self.assertEqual(rv.status_code, 200)
-        self.assertIn(b"Fill Out This Form", rv.data)
+        self.assertIn(b"You Died!", rv.data)
 
-    def test_hello_post(self):
-        data = {'name': 'Zed', 'greet': 'Hola'}
-        rv = web.post('/hello', follow_redirects=True, data=data)
-        self.assertIn(b"Zed", rv.data)
-        self.assertIn(b"Hola", rv.data)
+    # def test_hello_post(self):
+    #     data = {'room.name': 'central_corridor'}
+    #     rv = web.post('/game', follow_redirects=True, data=data)
+    #     self.assertIn(b"central_corridor", rv.data)
+        # self.assertIn(b"Hola", rv.data)

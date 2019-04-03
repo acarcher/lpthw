@@ -48,7 +48,7 @@ The container clicks open and the seal breaks, letting gas out.  You
 grab the neutron bomb and run as fast as you can to the bridge where you
 must place it in the right spot.
 
-You burst onto the Bridge with the netron destruct bomb under your arm
+You burst onto the Bridge with the neutron destruct bomb under your arm
 and surprise 5 Gothons who are trying to take control of the ship.  Each
 of them has an even uglier clown costume than the last.  They haven't
 pulled their weapons out yet, as they see the active bomb under your arm
@@ -141,7 +141,7 @@ the_bridge.add_paths({
 })
 
 laser_weapon_armory.add_paths({
-    '0132': the_bridge,
+    '132': the_bridge,
     '*': keypad_death
 })
 
