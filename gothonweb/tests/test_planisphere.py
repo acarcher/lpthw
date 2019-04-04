@@ -44,7 +44,7 @@ class test_planisphere(unittest.TestCase):
 
         self.assertEqual(room.go('*'), keypad_death)
 
-        room = room.go('0132')
+        room = room.go('132')
         self.assertEqual(room, the_bridge)
 
         self.assertEqual(room.go('throw the bomb'), bomb_death)
